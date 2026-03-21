@@ -60,7 +60,7 @@ def ctrl_led(color: str):
             led_green.blink(TIME_HIGH_MEDIUM, TIME_LOW_MEDIUM, None, True)
         else:
             led_green.off()
-    if color == COLOR_B:
+    elif color == COLOR_B:
         global state_led_blue
         state_led_blue = not(state_led_blue)
         if state_led_blue:
