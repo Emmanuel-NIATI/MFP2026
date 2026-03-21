@@ -58,3 +58,4 @@ Lisez moi
    57  history
    58  pwd
    59  history>history.txt
+   test
