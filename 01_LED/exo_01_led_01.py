@@ -3,6 +3,7 @@
 from gpiozero import LED
 from time import sleep
 
+
 # This library (gpiozero) uses Broadcom (BCM) pin numbering for the GPIO pins
 # As opposed to physical (BOARD) numbering. Unlike in the RPi.GPIO library, this is not configurable.
 # However, translation from other schemes can be used by providing prefixes to pin numbers (see below).
