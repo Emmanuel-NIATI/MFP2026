@@ -5,6 +5,7 @@ from gpiozero import LED, Button, Buzzer
 from signal import pause
 from time import sleep
 
+
 led_red = LED(12)
 led_green = LED(16)
 led_blue = LED(20)
