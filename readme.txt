@@ -1,7 +1,5 @@
-Lisez moi
- pwd
-    2  sudo apt update
-    3  sudo apt upgrade
+sudo apt update
+sudo apt upgrade
     4  ps
     5  sudo apt upgrade
     6  apt-cache depends package_name
@@ -34,28 +32,10 @@ Lisez moi
    33  LS
    34  ls
    35  cd rpi3-gpio/
-   36  ls
-   37  python3 exo_01_led_01.py 
-   38  python3 exo_01_led_01.py
-   39  sudo nano exo_01_led_01.py
    40  python3 exo_01_led_01.py
-   41  python3 exo_02_btn_01.py
-   42  python3 exo_01_led_01.py
-   43  python3 exo_02_btn_01.py
-   44  pip3 list
    45  python3 exo_02_btn_01.py
    46  python3 exo_02_btn_02.py
    47  python3 exo_02_btn_03.py
    48  python3 exo_02_btn_04.py
    49  python3 exo_02_btn_05.py
-   50  sudo halt
-   51  ls
-   52  exit
-   53  ls
-   54  exit
-   55  history
-   56  exit
-   57  history
-   58  pwd
-   59  history>history.txt
-   test
+history>history.txt
