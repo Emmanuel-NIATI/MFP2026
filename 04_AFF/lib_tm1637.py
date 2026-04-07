@@ -3,6 +3,14 @@ import time
 
 GPIO.setmode(GPIO.BCM)
 
+HEXGLYPH = {
+
+    
+}
+
+
+
+
 HEXDIGITS = [0x3f, 0x06, 0x5b, 0x4f, 0x66, 0x6d, 0x7d, 0x07, 0x7f, 0x6f]
 
 HEXLETTERS = {
@@ -53,6 +61,7 @@ INPUT = GPIO.IN
 LOW = GPIO.LOW
 HIGH = GPIO.HIGH
 
+
 class TM1637:
     __doublepoint = False
     __clk_pin = 0
@@ -76,6 +85,33 @@ class TM1637:
         self.set_values(data)
         self.__brightness = b
         self.__doublepoint = point
+
+    def start(self):
+        GPIO.output(self.__clk_pin, HIGH)
+        GPIO.output(self.__data_pin, HIGH)
+        GPIO.output(self.__data_pin, LOW)
+        GPIO.output(self.__clk_pin, LOW)
+
+    def stop(self):
+        GPIO.output(self.__clk_pin, LOW)
+        GPIO.output(self.__data_pin, LOW)
+        GPIO.output(self.__clk_pin, HIGH)
+        GPIO.output(self.__data_pin, HIGH)
+
+    def cleanup(self):
+        GPIO.cleanup(self.__clk_pin)
+        GPIO.cleanup(self.__data_pin)
+
+    def set_brightness(self, brightness):
+        if brightness not in range(8):
+            pass
+
+        self.__brightness = brightness
+        self.set_values(self.__current_data)
+
+    def set_doublepoint(self, value):
+        self.__doublepoint = value
+        self.set_values(self.__current_data)
 
     def set_values(self, data):
         for i in range(4):
@@ -110,23 +146,13 @@ class TM1637:
         self.write_byte(0x88 + self.__brightness)
         self.stop()
 
-    def set_brightness(self, brightness):
-        if brightness not in range(8):
-            pass
-
-        self.__brightness = brightness
-        self.set_values(self.__current_data)
-
-    def set_doublepoint(self, value):
-        self.__doublepoint = value
-        self.set_values(self.__current_data)
 
     def encode(self, data):
         point = 0x80 if self.__doublepoint else 0x00;
 
         if data == 0x7F:
             data = 0
-        elif HEXLETTERS.has_key(data):
+        elif data in HEXLETTERS:
             data = HEXLETTERS[data] + point
         else:
             data = HEXDIGITS[data] + point
@@ -154,20 +180,4 @@ class TM1637:
                 GPIO.output(self.__data_pin, LOW)
                 GPIO.setup(self.__data_pin, INPUT)
         GPIO.setup(self.__data_pin, OUTPUT)
-
-    def start(self):
-        GPIO.output(self.__clk_pin, HIGH)
-        GPIO.output(self.__data_pin, HIGH)
-        GPIO.output(self.__data_pin, LOW)
-        GPIO.output(self.__clk_pin, LOW)
-
-    def stop(self):
-        GPIO.output(self.__clk_pin, LOW)
-        GPIO.output(self.__data_pin, LOW)
-        GPIO.output(self.__clk_pin, HIGH)
-        GPIO.output(self.__data_pin, HIGH)
-
-    def cleanup(self):
-        GPIO.cleanup(self.__clk_pin)
-        GPIO.cleanup(self.__data_pin)
 
