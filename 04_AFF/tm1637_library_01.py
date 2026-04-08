@@ -24,12 +24,14 @@ display.show_data((0b1111111, 0b1111111, 0b1111111, 0b1000000))
 display.disable()
 display.enable()
 
+
+
       A
      ---
   F |   | B
      -G-
   E |   | C
-     ---
+     ---    °
       D
 
 """
