@@ -112,7 +112,7 @@ class TM1637_01:
         self.display_status = self.TM1637_DSP_ON
 
         GPIO.setwarnings(False)
-        GPIO.setmode(pin_mode)
+        GPIO.setmode(self.pin_mode)
         GPIO.setup(self.clk, GPIO.OUT)
         GPIO.setup(self.dio, GPIO.OUT)
 
