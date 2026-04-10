@@ -194,6 +194,9 @@ class TM1637_01:
     
     def showSign(self, data):
 
+        if data[0] not in self.DIGIT_TO_HEX:
+            data[0] = ' '
+
         if data[1] not in self.DIGIT_TO_HEX:
             data[1] = ' '
 
@@ -203,8 +206,6 @@ class TM1637_01:
         if data[3] not in self.DIGIT_TO_HEX:
             data[3] = ' '
 
-        if data[4] not in self.DIGIT_TO_HEX:
-            data[4] = ' '
 
         encoded_data = ( self.DIGIT_TO_HEX[data[0]], self.DIGIT_TO_HEX[data[1]], self.DIGIT_TO_HEX[data[2]], self.DIGIT_TO_HEX[data[3]] )
 
