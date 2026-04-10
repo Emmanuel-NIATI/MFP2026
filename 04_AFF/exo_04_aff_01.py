@@ -46,25 +46,25 @@ def setup():
     display.showSign(['0', TM1637_01.TM1637_NONE, TM1637_01.TM1637_NONE , TM1637_01.TM1637_NONE])
     sleep(0.5)
 
-    display.showLitteral((0b11111111, 0b11111111, 0b11111111, 0b11111111))
+    display.showLitteral((0b01111111, 0b01111111, 0b01111111, 0b01111111))
     sleep(0.5)
 
     display.showSign(['1', TM1637_01.TM1637_NONE, TM1637_01.TM1637_NONE , TM1637_01.TM1637_NONE])
     sleep(0.5)
 
-    display.showLitteral((0b01111111, 0b11111111, 0b11111111, 0b11111111))
+    display.showLitteral((0b01111111, 0b01111111, 0b01111111, 0b11111111))
     sleep(0.5)
 
     display.showSign(['2', TM1637_01.TM1637_NONE, TM1637_01.TM1637_NONE , TM1637_01.TM1637_NONE])
     sleep(0.5)
 
-    display.showLitteral((0b01111111, 0b01111111, 0b11111111, 0b11111111))
+    display.showLitteral((0b01111111, 0b01111111, 0b11111111, 0b01111111))
     sleep(0.5)
 
     display.showSign(['3', TM1637_01.TM1637_NONE, TM1637_01.TM1637_NONE , TM1637_01.TM1637_NONE])
     sleep(0.5)
 
-    display.showLitteral((0b01111111, 0b01111111, 0b01111111, 0b11111111))
+    display.showLitteral((0b01111111, 0b01111111, 0b11111111, 0b11111111))
     sleep(0.5)
 
     display.showSign(['4', TM1637_01.TM1637_NONE, TM1637_01.TM1637_NONE , TM1637_01.TM1637_NONE])
@@ -72,6 +72,19 @@ def setup():
 
     display.showLitteral((0b01111111, 0b01111111, 0b01111111, 0b01111111))
     sleep(0.5)
+
+    display.showSign(['5', TM1637_01.TM1637_NONE, TM1637_01.TM1637_NONE , TM1637_01.TM1637_NONE])
+    sleep(0.5)
+
+    display.showLitteral((0b01111111, 0b11111111, 0b01111111, 0b11111111))
+    sleep(0.5)
+
+    display.showSign(['6', TM1637_01.TM1637_NONE, TM1637_01.TM1637_NONE , TM1637_01.TM1637_NONE])
+    sleep(0.5)
+
+    display.showLitteral((0b01111111, 0b11111111, 0b11111111, 0b01111111))
+    sleep(0.5)
+
 
     display.disable()
     display.enable()
