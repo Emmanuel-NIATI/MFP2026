@@ -35,7 +35,7 @@ def setup():
     display.set_brightnes(1)
     sleep(0.5)
     
-    display.showLitteralow([5, 6, 7, 8])
+    display.showLitteral([5, 6, 7, 8])
     sleep(0.5)
 
     display.set_brightnes(2)
