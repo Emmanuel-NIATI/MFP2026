@@ -1,68 +1,37 @@
 #!/usr/bin/env python3
 
-from lib_tm1637 import TM1637
+from tm1637_library_01 import TM1637_01
 from gpiozero import LED, Button, Buzzer
 from signal import pause
 from time import sleep
 
-unTM1637 = TM1637(17, 27)  
+display = TM1637_01(clk=17, dio=27, brightnes=1, is_show_point=False, pin_mode="BCM")
 
 def setup():
+
     print("Exercice 04 - Les afficheurs 7 segments led 01")
-    
-    unTM1637.set_brightness(1)
 
-    unTM1637.set_values([0b1111111,0b1111111,0b1111111,0b1111111])
-    sleep(1)
+    display.show([1, 2, 3, 4])
+    display.clear()
 
-    unTM1637.set_values([0b1010101,0b1010101,0b1010101,0b1010101])
-    sleep(1)
+    display.show([1, 2, None, None])
 
+    display.show_point()
+    display.close_point()
 
-    unTM1637.set_values(['A', 'B', 'b', 'C'])
-    sleep(0.5)
+    display.show([1, 2, 3, 4])
 
-    unTM1637.set_values(['c', 'D', 'd', 'E'])
-    sleep(0.5)
+    display.set_brightnes(1)
 
-    unTM1637.set_values(['F', 'G', 'H', 'h'])
-    sleep(0.5)
+    display.show([5, 6, 7, 8])
 
-    unTM1637.set_values(['I', 'J', 'K', 'L'])
-    sleep(0.5)
+    display.set_brightnes(2)
 
-    unTM1637.set_values(['l', 'n', 'O', 'o'])
-    sleep(0.5)
+    display.show_data((0b1111111, 0b1111111, 0b1111111, 0b1000000))
 
-    unTM1637.set_values(['P', 'r', 'S', 'U'])
-    sleep(0.5)
+    display.disable()
+    display.enable()
 
-    unTM1637.set_values(['Y', 'Z', ' ', ' '])
-    sleep(0.5)
-
-    unTM1637.set_values(['T1', 'T2', 'W1', 'W2'])
-    sleep(0.5)
-
-    unTM1637.set_value('M1', 0)
-    sleep(0.5)
-
-    unTM1637.set_value('M2', 1)
-    sleep(0.5)
-
-    unTM1637.set_values(range(4))
-    sleep(0.5)
-
-    unTM1637.set_values(range(4, 8))
-    sleep(0.5)
-
-    unTM1637.set_values(range(6, 10))
-    sleep(0.5)
-
-    
-
-    unTM1637.clear()
-
-    unTM1637.cleanup()
 
 #def loop():
 
@@ -77,3 +46,6 @@ finally:
     print("...")
 
 # END
+
+
+
