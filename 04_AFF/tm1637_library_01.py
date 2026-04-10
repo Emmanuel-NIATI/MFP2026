@@ -17,16 +17,23 @@ display.show([1, 2, None, None])
 display.show_point()
 display.close_point()
 
+display.show([1, 2, 3, 4])
+
 display.set_brightnes(1)
+
+display.show([5, 6, 7, 8])
+
+display.set_brightnes(2)
 
 display.show_data((0b1111111, 0b1111111, 0b1111111, 0b1000000))
 
 display.disable()
 display.enable()
 
+"""
+"""
 
-
-      A
+      A         A
      ---
   F |   | B
      -G-
@@ -49,6 +56,7 @@ class tm1637_01:
 
     DIGIT_TO_HEX = {
 
+        ' ': 0x00,
         '0': 0x3f,
         '1': 0x06,
         '2': 0x5b,
@@ -59,40 +67,37 @@ class tm1637_01:
         '7': 0x07,
         '8': 0x7f,
         '9': 0x6f,
+        'a': 0x77,
+        'b': 0x7C,
+        'c': 0x58,
+        'd': 0x5E,
+        'h': 0x74,
+        'I': 0x06,
+        'l': 0x06,
+        'n': 0x54,
+        'o': 0x5c,
+        'r': 0x50,
         'A': 0x77,
         'B': 0x7f,
-        'b': 0x7C,
         'C': 0x39,
-        'c': 0x58,
         'D': 0x3f,
-        'd': 0x5E,
         'E': 0x79,
         'F': 0x71,
         'G': 0x7d,
         'H': 0x76,
-        'h': 0x74,
         'I': 0x06,
         'J': 0x1f,
         'K': 0x76,
         'L': 0x38,
-        'l': 0x06,
         'n': 0x54,
         'O': 0x3f,
-        'o': 0x5c,
         'P': 0x73,
-        'r': 0x50,
         'S': 0x6d,
+        'T': 0x00,
         'U': 0x3e,
         'V': 0x3e,
         'Y': 0x66,
         'Z': 0x5b,
-        ' ': 0x00,
-        'T1': 0x07,
-        'T2': 0x31,
-        'M1': 0x33,
-        'M2': 0x27,
-        'W1': 0x3c,
-        'W2': 0x1e,
 
 }
 
@@ -158,16 +163,6 @@ class tm1637_01:
     def clear(self):
 
         self.show_data(self.DATA_CLEAR)
-
-
-    def show_point(self):
-
-        self.is_show_point = True
-        self.current_data = (self.current_data[0],
-                             self.current_data[1] | 0b10000000,
-                             self.current_data[2],
-                             self.current_data[3])
-        self.refresh()
 
 
     def show_point(self):
