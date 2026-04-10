@@ -208,10 +208,10 @@ class TM1637_01:
 
 
         encoded_data = (
-            self.DIGIT_TO_HEX[self.NONE_SEGMENT],
-            self.DIGIT_TO_HEX[self.NONE_SEGMENT],
-            self.DIGIT_TO_HEX[self.NONE_SEGMENT],
-            self.DIGIT_TO_HEX[self.NONE_SEGMENT]
+            self.DIGIT_TO_HEX['1'],
+            self.DIGIT_TO_HEX['1'],
+            self.DIGIT_TO_HEX['1'],
+            self.DIGIT_TO_HEX['1']
         )
 
 
