@@ -3,36 +3,6 @@
 
 """
 
-import RPi.GPIO as GPIO
-from tm1637 import TM1637
-
-display = TM1637(clk=xx, dio=xx, brightnes=7, is_show_point=False, pin_mode=GPIO.BCM)
-
-
-display.show([1, 2, 3, 4])
-display.clear()
-
-display.show([1, 2, None, None])
-
-display.show_point()
-display.close_point()
-
-display.show([1, 2, 3, 4])
-
-display.set_brightnes(1)
-
-display.show([5, 6, 7, 8])
-
-display.set_brightnes(2)
-
-display.show_data((0b1111111, 0b1111111, 0b1111111, 0b1000000))
-
-display.disable()
-display.enable()
-
-"""
-"""
-
       A         A
      ---
   F |   | B
@@ -124,7 +94,7 @@ class TM1637_01:
 
     DATA_CLEAR = (0x00, 0x00, 0x00, 0x00)
 
-    def __init__(self, clk, dio, brightnes=2, is_show_point=False, pin_mode=GPIO.BCM):
+    def __init__(self, clk, dio, brightnes, is_show_point, pin_mode):
 
         assert 0 <= brightnes <= 7
 
@@ -132,12 +102,21 @@ class TM1637_01:
         self.dio = dio
         self.brightnes = brightnes
         self.is_show_point = is_show_point
+
+        if pin_mode == "BCM":
+            self.pin_mode = GPIO.BCM
+        elif pin_mode == "BOARD":
+            self.pin_mode = GPIO.BOARD
+        else:
+            self.pin_mode = GPIO.BCM
+                
         self.display_status = self.TM1637_DSP_ON
 
         GPIO.setwarnings(False)
         GPIO.setmode(pin_mode)
         GPIO.setup(self.clk, GPIO.OUT)
         GPIO.setup(self.dio, GPIO.OUT)
+
         self.current_data = self.DATA_CLEAR
 
 
