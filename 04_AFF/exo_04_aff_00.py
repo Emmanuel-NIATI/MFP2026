@@ -16,9 +16,6 @@ def setup():
     unTM1637.set_values([0b1111111,0b1111111,0b1111111,0b1111111])
     sleep(1)
 
-    unTM1637.set_values([0b1010101,0b1010101,0b1010101,0b1010101])
-    sleep(1)
-
     unTM1637.set_values(['A', 'B', 'b', 'C'])
     sleep(0.5)
 
