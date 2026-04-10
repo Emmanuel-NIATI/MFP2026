@@ -207,7 +207,6 @@ class TM1637_01:
         if data[3] not in self.DIGIT_TO_HEX:
             data[3] = ' '
 
-
         encoded_data = ( self.DIGIT_TO_HEX[data[0]], self.DIGIT_TO_HEX[data[1]], self.DIGIT_TO_HEX[data[2]], self.DIGIT_TO_HEX[data[3]] )
 
         self.show_data(encoded_data)

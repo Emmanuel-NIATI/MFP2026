@@ -20,7 +20,7 @@ def setup():
     display.clear()
     sleep(0.5)
 
-    display.showLitteral([1, 2, TM1637_01.TM1637_NONE , TM1637_01.TM1637_NONE])
+    display.showSign(['1', '2', TM1637_01.TM1637_NONE , TM1637_01.TM1637_NONE])
     sleep(0.5)
     
     display.show_point()
@@ -28,14 +28,11 @@ def setup():
     
     display.close_point()
     sleep(0.5)
-    
-    display.showLitteral([1, 2, 3, 4])
-    sleep(0.5)
-    
+        
     display.set_brightnes(1)
     sleep(0.5)
     
-    display.showLitteral([5, 6, 7, 8])
+    display.showSign(['A', 'B', 'C', 'd'])
     sleep(0.5)
 
     display.set_brightnes(2)
