@@ -38,8 +38,10 @@ def setup():
     display.set_brightnes(2)
     sleep(0.5)
 
-    display.showLitteral((0b1111111, 0b1111111, 0b1111111, 0b1111111))
+    display.showLitteral((0b01111111, 0b01111111, 0b01111111, 0b01111111))
     sleep(0.5)
+
+    display.set_brightnes(3)
 
     display.showLitteral((0b11111111, 0b11111111, 0b11111111, 0b11111111))
     sleep(0.5)
