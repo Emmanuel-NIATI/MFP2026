@@ -89,7 +89,7 @@ class TM1637_01:
         0b1110001   # F
     ]
 
-    NONE_SEGMENT = 0b0000000
+    NONE_SEGMENT = 0x00
 
     DATA_CLEAR = (0x00, 0x00, 0x00, 0x00)
 
@@ -197,12 +197,24 @@ class TM1637_01:
         if data[3] is None:
             data[3] = self.NONE_SEGMENT
 
+        """"
         encoded_data = (
             self.DIGIT_TO_HEX[data[1]],
             self.DIGIT_TO_HEX[data[2]],
             self.DIGIT_TO_HEX[data[3]],
             self.DIGIT_TO_HEX[data[4]]
         )
+        """
+
+
+        encoded_data = (
+            self.DIGIT_TO_HEX[self.NONE_SEGMENT],
+            self.DIGIT_TO_HEX[self.NONE_SEGMENT],
+            self.DIGIT_TO_HEX[self.NONE_SEGMENT],
+            self.DIGIT_TO_HEX[self.NONE_SEGMENT]
+        )
+
+
 
         self.show_data(encoded_data)
 
