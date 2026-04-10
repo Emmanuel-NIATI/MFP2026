@@ -13,7 +13,6 @@
 """
 
 import RPi.GPIO as GPIO
-import time
 
 class TM1637_01:
 
@@ -183,38 +182,28 @@ class TM1637_01:
         self.stop()
     
     
-    def show(self, data):
+    def showLitteral(self, data):
 
-        if data[1] is None:
-            data[1] = self.NONE_SEGMENT
+        encoded_data = ( data[1], data[2], data[3], data[4] )
+
+        self.show_data(encoded_data)
+
     
-        if data[2] is None:
-            data[2] = self.NONE_SEGMENT
+    def showSign(self, data):
 
-        if data[3] is None:
-            data[3] = self.NONE_SEGMENT
+        if data[1] not in self.DIGIT_TO_HEX:
+            data[1] = ' '
 
-        if data[3] is None:
-            data[3] = self.NONE_SEGMENT
+        if data[2] not in self.DIGIT_TO_HEX:
+            data[2] = ' '
 
-        """"
-        encoded_data = (
-            self.DIGIT_TO_HEX[data[1]],
-            self.DIGIT_TO_HEX[data[2]],
-            self.DIGIT_TO_HEX[data[3]],
-            self.DIGIT_TO_HEX[data[4]]
-        )
-        """
+        if data[3] not in self.DIGIT_TO_HEX:
+            data[3] = ' '
 
+        if data[4] not in self.DIGIT_TO_HEX:
+            data[4] = ' '
 
-        encoded_data = (
-            self.DIGIT_TO_HEX['1'],
-            self.DIGIT_TO_HEX['1'],
-            self.DIGIT_TO_HEX['1'],
-            self.DIGIT_TO_HEX['1']
-        )
-
-
+        encoded_data = ( self.DIGIT_TO_HEX[data[1]], self.DIGIT_TO_HEX[data[2]], self.DIGIT_TO_HEX[data[3]], self.DIGIT_TO_HEX[data[4]] )
 
         self.show_data(encoded_data)
 
