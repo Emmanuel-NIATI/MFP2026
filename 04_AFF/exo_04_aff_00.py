@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 
-from lib_tm1637 import TM1637
+from tm1637_library_00 import TM1637_00
 from gpiozero import LED, Button, Buzzer
 from signal import pause
 from time import sleep
 
-unTM1637 = TM1637(17, 27)  
+unTM1637 = TM1637_00(17, 27)  
 
 def setup():
     print("Exercice 04 - Les afficheurs 7 segments led 01")

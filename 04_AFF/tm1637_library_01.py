@@ -46,7 +46,7 @@ display.enable()
 import RPi.GPIO as GPIO
 import time
 
-class tm1637_01:
+class TM1637_01:
 
     COMMAND_DATA = 0x40         # data command
     COMMAND_ADDRESS = 0xC0      # address command

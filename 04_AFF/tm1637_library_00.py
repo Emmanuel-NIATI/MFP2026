@@ -62,7 +62,7 @@ LOW = GPIO.LOW
 HIGH = GPIO.HIGH
 
 
-class TM1637:
+class TM1637_00:
     __doublepoint = False
     __clk_pin = 0
     __data_pin = 0
