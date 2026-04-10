@@ -85,6 +85,59 @@ def setup():
     display.showLitteral((0b01111111, 0b11111111, 0b11111111, 0b01111111))
     sleep(0.5)
 
+    display.showSign(['7', TM1637_01.TM1637_NONE, TM1637_01.TM1637_NONE , TM1637_01.TM1637_NONE])
+    sleep(0.5)
+
+    display.showLitteral((0b01111111, 0b11111111, 0b11111111, 0b11111111))
+    sleep(0.5)
+
+    display.showSign(['8', TM1637_01.TM1637_NONE, TM1637_01.TM1637_NONE , TM1637_01.TM1637_NONE])
+    sleep(0.5)
+
+    display.showLitteral((0b11111111, 0b01111111, 0b01111111, 0b01111111))
+    sleep(0.5)
+
+    display.showSign(['9', TM1637_01.TM1637_NONE, TM1637_01.TM1637_NONE , TM1637_01.TM1637_NONE])
+    sleep(0.5)
+
+    display.showLitteral((0b11111111, 0b01111111, 0b01111111, 0b11111111))
+    sleep(0.5)
+
+    display.showSign(['A', TM1637_01.TM1637_NONE, TM1637_01.TM1637_NONE , TM1637_01.TM1637_NONE])
+    sleep(0.5)
+
+    display.showLitteral((0b11111111, 0b01111111, 0b11111111, 0b01111111))
+    sleep(0.5)
+
+    display.showSign(['B', TM1637_01.TM1637_NONE, TM1637_01.TM1637_NONE , TM1637_01.TM1637_NONE])
+    sleep(0.5)
+
+    display.showLitteral((0b11111111, 0b01111111, 0b11111111, 0b11111111))
+    sleep(0.5)
+
+    display.showSign(['C', TM1637_01.TM1637_NONE, TM1637_01.TM1637_NONE , TM1637_01.TM1637_NONE])
+    sleep(0.5)
+
+    display.showLitteral((0b11111111, 0b01111111, 0b01111111, 0b01111111))
+    sleep(0.5)
+
+    display.showSign(['D', TM1637_01.TM1637_NONE, TM1637_01.TM1637_NONE , TM1637_01.TM1637_NONE])
+    sleep(0.5)
+
+    display.showLitteral((0b11111111, 0b11111111, 0b01111111, 0b11111111))
+    sleep(0.5)
+
+    display.showSign(['E', TM1637_01.TM1637_NONE, TM1637_01.TM1637_NONE , TM1637_01.TM1637_NONE])
+    sleep(0.5)
+
+    display.showLitteral((0b11111111, 0b11111111, 0b11111111, 0b01111111))
+    sleep(0.5)
+
+    display.showSign(['F', TM1637_01.TM1637_NONE, TM1637_01.TM1637_NONE , TM1637_01.TM1637_NONE])
+    sleep(0.5)
+
+    display.showLitteral((0b11111111, 0b11111111, 0b11111111, 0b11111111))
+    sleep(0.5)
 
     display.disable()
     display.enable()
