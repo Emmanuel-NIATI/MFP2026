@@ -11,13 +11,13 @@ def setup():
 
     print("Exercice 04 - Les afficheurs 7 segments led 01")
 
-    display.show(['1', '2', '3', '4'])
+    display.showSign(['1', '2', '3', '4'])
     sleep(0.5)
 
     display.clear()
     sleep(0.5)
 
-    display.show([1, 2, None, None])
+    display.showLitteral([1, 2, None, None])
     sleep(0.5)
     
     display.show_point()
@@ -26,19 +26,19 @@ def setup():
     display.close_point()
     sleep(0.5)
     
-    display.show([1, 2, 3, 4])
+    display.showLitteral([1, 2, 3, 4])
     sleep(0.5)
     
     display.set_brightnes(1)
     sleep(0.5)
     
-    display.show([5, 6, 7, 8])
+    display.showLitteralow([5, 6, 7, 8])
     sleep(0.5)
 
     display.set_brightnes(2)
     sleep(0.5)
 
-    display.show_data((0b1111111, 0b1111111, 0b1111111, 0b1000000))
+    display.showLitteral((0b1111111, 0b1111111, 0b1111111, 0b1000000))
     sleep(0.5)
 
     display.disable()
