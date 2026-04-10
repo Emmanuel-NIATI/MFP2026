@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
 
+from RPi import GPIO
+from time import sleep
+
+
+
 """
 
       A         A
@@ -11,8 +16,6 @@
       D
 
 """
-
-import RPi.GPIO as GPIO
 
 class TM1637_01:
 
@@ -184,7 +187,7 @@ class TM1637_01:
     
     def showLitteral(self, data):
 
-        encoded_data = ( data[1], data[2], data[3], data[4] )
+        encoded_data = ( data[0], data[1], data[2], data[3] )
 
         self.show_data(encoded_data)
 
@@ -203,7 +206,7 @@ class TM1637_01:
         if data[4] not in self.DIGIT_TO_HEX:
             data[4] = ' '
 
-        encoded_data = ( self.DIGIT_TO_HEX[data[1]], self.DIGIT_TO_HEX[data[2]], self.DIGIT_TO_HEX[data[3]], self.DIGIT_TO_HEX[data[4]] )
+        encoded_data = ( self.DIGIT_TO_HEX[data[0]], self.DIGIT_TO_HEX[data[1]], self.DIGIT_TO_HEX[data[2]], self.DIGIT_TO_HEX[data[3]] )
 
         self.show_data(encoded_data)
 
@@ -228,7 +231,7 @@ class TM1637_01:
 
         while GPIO.input(self.dio):
 
-            time.sleep(0.001)
+            sleep(0.001)
 
             if GPIO.input(self.dio):
                 GPIO.setup(self.dio, GPIO.OUT)
