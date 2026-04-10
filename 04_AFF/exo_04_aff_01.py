@@ -20,7 +20,7 @@ def setup():
     display.clear()
     sleep(0.5)
 
-    display.showLitteral([1, 2, None, None])
+    display.showLitteral([1, 2, TM1637_01.TM1637_NONE , TM1637_01.TM1637_NONE])
     sleep(0.5)
     
     display.show_point()

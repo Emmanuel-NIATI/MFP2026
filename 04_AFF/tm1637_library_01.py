@@ -22,6 +22,7 @@ class TM1637_01:
     COMMAND_DATA = 0x40         # data command
     COMMAND_ADDRESS = 0xC0      # address command
     COMMAND_CTRL = 0x80         # display control command
+    TM1637_NONE = 0x00
     TM1637_DSP_ON = 0x08        # display on
     TM1637_DSP_OFF = 0x00       # display off
 
