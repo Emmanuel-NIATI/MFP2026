@@ -11,6 +11,9 @@ def setup():
 
     print("Exercice 04 - Les afficheurs 7 segments led 01")
 
+    display.showNumber([4,3,2,1])
+    sleep(0.5)
+
     display.showSign(['A', 'B', 'C', 'd'])
     sleep(0.5)
 
@@ -141,6 +144,8 @@ def setup():
 
     display.disable()
     display.enable()
+
+    display.clear()
 
 
 #def loop():

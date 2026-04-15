@@ -4,17 +4,20 @@ from RPi import GPIO
 from time import sleep
 
 
-
 """
 
-      A         A
-     ---
-  F |   | B
-     -G-
-  E |   | C
-     ---    °
-      D
+     ---A---
+    |       |
+    | F     | B
+    |       |
+     ---G---
+    |       |
+    | E     | C
+    |       |
+     ---D---    O
 
+     data[i] = 0b0ABCDEFG
+     
 """
 
 class TM1637_01:
@@ -25,6 +28,22 @@ class TM1637_01:
     TM1637_NONE = 0x00
     TM1637_DSP_ON = 0x08        # display on
     TM1637_DSP_OFF = 0x00       # display off
+
+    NUMBER_TO_HEX = {
+
+        -1: 0x00,
+        0: 0x3f,
+        1: 0x06,
+        2: 0x5b,
+        3: 0x4f,
+        4: 0x66,
+        5: 0x6d,
+        6: 0x7d,
+        7: 0x07,
+        8: 0x7f,
+        9: 0x6f,
+
+    }
 
     DIGIT_TO_HEX = {
 
@@ -210,6 +229,26 @@ class TM1637_01:
         encoded_data = ( self.DIGIT_TO_HEX[data[0]], self.DIGIT_TO_HEX[data[1]], self.DIGIT_TO_HEX[data[2]], self.DIGIT_TO_HEX[data[3]] )
 
         self.show_data(encoded_data)
+
+
+    def showNumber(self, data):
+
+        if data[0] not in self.NUMBER_TO_HEX:
+            data[0] = -1
+
+        if data[1] not in self.NUMBER_TO_HEX:
+            data[1] = -1
+
+        if data[2] not in self.NUMBER_TO_HEX:
+            data[2] = -1
+
+        if data[3] not in self.NUMBER_TO_HEX:
+            data[3] = -1
+
+        encoded_data = ( self.NUMBER_TO_HEX[data[0]], self.NUMBER_TO_HEX[data[1]], self.NUMBER_TO_HEX[data[2]], self.NUMBER_TO_HEX[data[3]] )
+
+        self.show_data(encoded_data)
+
 
     def write_byte(self, b):
 
