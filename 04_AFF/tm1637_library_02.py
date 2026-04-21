@@ -111,6 +111,8 @@ class TM1637_02:
     ]
 
     NONE_SEGMENT = 0x00
+    DIGIT_SPACE = ' '
+    NUMBER_NULL = -1
 
     DATA_CLEAR = (NONE_SEGMENT, NONE_SEGMENT, NONE_SEGMENT, NONE_SEGMENT, NONE_SEGMENT, NONE_SEGMENT)
 
@@ -229,11 +231,6 @@ class TM1637_02:
         self.stop()
 
 
-    def clear(self):
-
-        self.show_data(self.DATA_CLEAR)
-
-
     def show_double_point(self):
 
         double_point_data = 0b10000000
@@ -260,38 +257,39 @@ class TM1637_02:
         self.refresh()
 
     
-    def show_digit(self, data_in):
+    def show_digit(self, data):
 
-        data = ( ' ', ' ', ' ', ' ', ' ', ' ')
+        data_0 = ' '
+        data_1 = ' '
+        data_2 = ' '
+        data_3 = ' '
+        data_4 = ' '
+        data_5 = ' '
 
-        if data_in[0] not in self.DIGIT_TO_HEX:
-            data[0] = ' '
-        else:
-            data[0] = data_in[0]
+        if data[0] in self.DIGIT_TO_HEX:
+            data_0 = data[0]
 
-        if data_in[1] not in self.DIGIT_TO_HEX:
-            data[1] = ' '
-        else:
-            data[1] = data_in[1]
+        if data[1] in self.DIGIT_TO_HEX:
+            data_1 = data[1]
 
-        if data_in[2] not in self.DIGIT_TO_HEX:
-            data[2] = ' '
-        else:
-            data[2] = data_in[2]
+        if data[2] in self.DIGIT_TO_HEX:
+            data_2 = data[2]
 
-        if data_in[3] not in self.DIGIT_TO_HEX:
-            data[3] = ' '
-        else:
-            data[3] = data_in[3]
+        if data[3] in self.DIGIT_TO_HEX:
+            data_3 = data[3]
 
-        encoded_data = (    self.DIGIT_TO_HEX[data[0]],
-                            self.DIGIT_TO_HEX[data[1]],
-                            self.DIGIT_TO_HEX[data[2]],
-                            self.DIGIT_TO_HEX[data[3]],
-                            self.DIGIT_TO_HEX[data[4]],
-                            self.DIGIT_TO_HEX[data[5]] )
+        encoded_data = (    self.DIGIT_TO_HEX[data_0],
+                            self.DIGIT_TO_HEX[data_1],
+                            self.DIGIT_TO_HEX[data_2],
+                            self.DIGIT_TO_HEX[data_3],
+                            self.DIGIT_TO_HEX[data_4],
+                            self.DIGIT_TO_HEX[data_5] )
 
         self.show_data(encoded_data)
+
+    def clear(self):
+
+        self.show_digit(self.DATA_CLEAR)
 
 
     def scroll_digit(self, data, delay):
@@ -300,35 +298,62 @@ class TM1637_02:
         k = len(str_data)
 
 
-    def show_number(self, data_in):
+    def show_number(self, data):
 
-        data = ( -1, -1, -1, -1, -1, -1)
+        data_0 = -1
+        data_1 = -1
+        data_2 = -1
+        data_3 = -1
+        data_4 = -1
+        data_5 = -1
 
-        if data_in[0] not in self.NUMBER_TO_HEX:
-            data[0] = -1
-        else:
-            data[0] = data_in[0]
+        if data[0] in self.NUMBER_TO_HEX:
+            data_0 = data[0]
 
-        if data_in[1] not in self.NUMBER_TO_HEX:
-            data[1] = -1
-        else:
-            data[1] = data_in[1]
+        if data[1] in self.NUMBER_TO_HEX:
+            data_1 = data[1]
 
-        if data_in[2] not in self.NUMBER_TO_HEX:
-            data[2] = -1
-        else:
-            data[2] = data_in[2]
+        if data[2] in self.NUMBER_TO_HEX:
+            data_2 = data[2]
 
-        if data_in[3] not in self.NUMBER_TO_HEX:
-            data[3] = -1
-        else:
-            data[3] = data_in[3]
+        if data[3] in self.NUMBER_TO_HEX:
+            data_3 = data[3]
 
-        encoded_data = (    self.NUMBER_TO_HEX[data[0]],
-                            self.NUMBER_TO_HEX[data[1]],
-                            self.NUMBER_TO_HEX[data[2]],
-                            self.NUMBER_TO_HEX[data[3]],
-                            self.NUMBER_TO_HEX[data[4]],
-                            self.NUMBER_TO_HEX[data[5]] )
+        encoded_data = (    self.NUMBER_TO_HEX[data_0],
+                            self.NUMBER_TO_HEX[data_1],
+                            self.NUMBER_TO_HEX[data_2],
+                            self.NUMBER_TO_HEX[data_3],
+                            self.NUMBER_TO_HEX[data_4],
+                            self.NUMBER_TO_HEX[data_5] )
 
         self.show_data(encoded_data)
+
+
+    def show_binary(self, data):
+
+        data_0 = 0b00000000
+        data_1 = 0b00000000
+        data_2 = 0b00000000
+        data_3 = 0b00000000
+        data_4 = 0b00000000
+        data_5 = 0b00000000
+
+        data_0 = data[0]
+        data_1 = data[1]
+        data_2 = data[2]
+        data_3 = data[3]
+        data_4 = data[4]
+        data_5 = data[5]
+
+        encoded_data = (    data_0,
+                            data_1,
+                            data_2,
+                            data_3,
+                            data_4,
+                            data_5 )
+
+        self.show_data(encoded_data)
+
+
+
+
