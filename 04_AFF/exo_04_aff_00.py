@@ -9,8 +9,8 @@ unTM1637 = TM1637_00(17, 27)
 
 def setup():
 
-    print("Exercice 04 - Les afficheurs 7 segments led 00")
-    
+    print("Exercice 04 - Les afficheurs 7 segments - Partie 00")
+        
     unTM1637.set_brightness(1)
 
     unTM1637.set_values([0b1111111,0b1111111,0b1111111,0b1111111])

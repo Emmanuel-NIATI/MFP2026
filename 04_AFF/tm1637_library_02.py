@@ -25,7 +25,6 @@ class TM1637_02:
     COMMAND_DATA = 0x40         # data command
     COMMAND_ADDRESS = 0xC0      # address command
     COMMAND_CTRL = 0x80         # display control command
-    TM1637_NONE = 0x00
     TM1637_DSP_ON = 0x08        # display on
     TM1637_DSP_OFF = 0x00       # display off
 
@@ -113,16 +112,16 @@ class TM1637_02:
 
     NONE_SEGMENT = 0x00
 
-    DATA_CLEAR = (0x00, 0x00, 0x00, 0x00)
+    DATA_CLEAR = (NONE_SEGMENT, NONE_SEGMENT, NONE_SEGMENT, NONE_SEGMENT, NONE_SEGMENT, NONE_SEGMENT)
 
-    def __init__(self, clk, dio, brightnes, is_show_point, pin_mode):
+    def __init__(self, clk, dio, brightnes, is_show_double_point, pin_mode):
 
         assert 0 <= brightnes <= 7
 
         self.clk = clk
         self.dio = dio
         self.brightnes = brightnes
-        self.is_show_point = is_show_point
+        self.is_show_double_point = is_show_double_point
 
         if pin_mode == "BCM":
             self.pin_mode = GPIO.BCM
@@ -221,7 +220,7 @@ class TM1637_02:
         self.start()
         self.write_byte(self.COMMAND_ADDRESS)
 
-        for i in range(4):
+        for i in range(6):
             self.write_byte(data[i])
         
         self.stop()
@@ -237,41 +236,60 @@ class TM1637_02:
 
     def show_double_point(self):
 
-        point_data = 0b10000000
+        double_point_data = 0b10000000
         self.is_show_point = True
-        self.current_data = (self.current_data[0],
-                             self.current_data[1] | point_data,
-                             self.current_data[2],
-                             self.current_data[3])
+        self.current_data = (   self.current_data[0],
+                                self.current_data[1] | double_point_data,
+                                self.current_data[2],
+                                self.current_data[3],
+                                self.current_data[4],
+                                self.current_data[5])
         self.refresh()
 
 
-    def close_double_point(self):
+    def hide_double_point(self):
         
-        point_data = 0b01111111
+        double_point_data = 0b01111111
         self.is_show_point = False
-        self.current_data = (self.current_data[0],
-                             self.current_data[1] & point_data,
-                             self.current_data[2],
-                             self.current_data[3])
+        self.current_data = (   self.current_data[0],
+                                self.current_data[1] & double_point_data,
+                                self.current_data[2],
+                                self.current_data[3],
+                                self.current_data[4],
+                                self.current_data[5])
         self.refresh()
 
     
-    def show_digit(self, data):
+    def show_digit(self, data_in):
 
-        if data[0] not in self.DIGIT_TO_HEX:
+        data = ( ' ', ' ', ' ', ' ', ' ', ' ')
+
+        if data_in[0] not in self.DIGIT_TO_HEX:
             data[0] = ' '
+        else:
+            data[0] = data_in[0]
 
-        if data[1] not in self.DIGIT_TO_HEX:
+        if data_in[1] not in self.DIGIT_TO_HEX:
             data[1] = ' '
+        else:
+            data[1] = data_in[1]
 
-        if data[2] not in self.DIGIT_TO_HEX:
+        if data_in[2] not in self.DIGIT_TO_HEX:
             data[2] = ' '
+        else:
+            data[2] = data_in[2]
 
-        if data[3] not in self.DIGIT_TO_HEX:
+        if data_in[3] not in self.DIGIT_TO_HEX:
             data[3] = ' '
+        else:
+            data[3] = data_in[3]
 
-        encoded_data = ( self.DIGIT_TO_HEX[data[0]], self.DIGIT_TO_HEX[data[1]], self.DIGIT_TO_HEX[data[2]], self.DIGIT_TO_HEX[data[3]] )
+        encoded_data = (    self.DIGIT_TO_HEX[data[0]],
+                            self.DIGIT_TO_HEX[data[1]],
+                            self.DIGIT_TO_HEX[data[2]],
+                            self.DIGIT_TO_HEX[data[3]],
+                            self.DIGIT_TO_HEX[data[4]],
+                            self.DIGIT_TO_HEX[data[5]] )
 
         self.show_data(encoded_data)
 
@@ -282,24 +300,35 @@ class TM1637_02:
         k = len(str_data)
 
 
-    def show_number(self, data):
+    def show_number(self, data_in):
 
-        if data[0] not in self.NUMBER_TO_HEX:
+        data = ( -1, -1, -1, -1, -1, -1)
+
+        if data_in[0] not in self.NUMBER_TO_HEX:
             data[0] = -1
+        else:
+            data[0] = data_in[0]
 
-        if data[1] not in self.NUMBER_TO_HEX:
+        if data_in[1] not in self.NUMBER_TO_HEX:
             data[1] = -1
+        else:
+            data[1] = data_in[1]
 
-        if data[2] not in self.NUMBER_TO_HEX:
+        if data_in[2] not in self.NUMBER_TO_HEX:
             data[2] = -1
+        else:
+            data[2] = data_in[2]
 
-        if data[3] not in self.NUMBER_TO_HEX:
+        if data_in[3] not in self.NUMBER_TO_HEX:
             data[3] = -1
+        else:
+            data[3] = data_in[3]
 
-        encoded_data = ( self.NUMBER_TO_HEX[data[0]], self.NUMBER_TO_HEX[data[1]], self.NUMBER_TO_HEX[data[2]], self.NUMBER_TO_HEX[data[3]] )
+        encoded_data = (    self.NUMBER_TO_HEX[data[0]],
+                            self.NUMBER_TO_HEX[data[1]],
+                            self.NUMBER_TO_HEX[data[2]],
+                            self.NUMBER_TO_HEX[data[3]],
+                            self.NUMBER_TO_HEX[data[4]],
+                            self.NUMBER_TO_HEX[data[5]] )
 
         self.show_data(encoded_data)
-
-
-
-

@@ -76,7 +76,7 @@ def ctrl_led(color: str):
             led_white.off()
 
 def setup():
-    print("Exercice 02 - Les boutons 05")
+    print("Exercice 02 - Les boutons - Partie 05")
 
 def loop():
     button_red.when_pressed = ctrl_led_red

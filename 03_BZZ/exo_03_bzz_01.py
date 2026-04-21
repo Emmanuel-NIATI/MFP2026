@@ -8,7 +8,7 @@ bzz = Buzzer(4)
 
 def setup():
     i=1
-    print("Exercice 03 - Les buzzers 01")
+    print("Exercice 03 - Les buzzers - Partie 01")
     while(i<6):
         bzz.on()
         sleep(0.5)
@@ -24,4 +24,3 @@ finally:
     bzz.off()
 
 # END
-

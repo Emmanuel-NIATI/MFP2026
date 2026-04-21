@@ -25,7 +25,7 @@ def ctrl_led(color: str):
         state_led_red = not(state_led_red)
 
 def setup():
-    print("Exercice 02 - Les boutons 02")
+    print("Exercice 02 - Les boutons - Partie 02")
 
 def loop():
     button_red.when_pressed = ctrl_led_red
@@ -40,51 +40,3 @@ finally:
     led_red.close()
 
 # END
-
-
-
-
-
-
-
-
-
-
-import RPi.GPIO as GPIO
-from time import sleep
-
-LED = 5
-BTN = 6
-
-TIME = 0.1
-
-TIME_HIGHT=0.5
-TIME_LOW=0.5
-
-def setup():
-    GPIO.setmode(GPIO.BCM)
-    GPIO.setup(LED, GPIO.OUT)
-    GPIO.setup(BTN, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-    GPIO.output(LED ,GPIO.LOW)
-
-
-def loop():
-    sleep(TIME)
-    b = GPIO.input(BTN)
-    if b:
-        print("BTN still pressed with LED off")
-        GPIO.output(LED ,GPIO.LOW)
-    else:
-        print("BTN still released with LED on")
-        GPIO.output(LED ,GPIO.HIGH)
-
-try:
-    setup()
-    while True:
-        loop()
-
-finally:
-    GPIO.cleanup()
-
-# END
-

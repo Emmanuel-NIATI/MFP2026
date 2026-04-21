@@ -8,7 +8,7 @@ led_red = LED(12)
 button_red = Button(5, pull_up=False)
 
 def setup():
-    print("Exercice 02 - Les boutons 01")
+    print("Exercice 02 - Les boutons - Partie 01")
 
 def loop():
     button_red.when_pressed = led_red.on
@@ -16,10 +16,10 @@ def loop():
 
 try:
     setup()
-    loop()
+    while True:
+        loop()
 
 finally:
     led_red.close()
 
 # END
-

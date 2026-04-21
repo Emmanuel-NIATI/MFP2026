@@ -34,7 +34,7 @@ def blink():
     sleep(TIME_LOW)
 
 def setup():
-    print("Exercice 01 - Les leds")
+    print("Exercice 01 - Les leds - Partie 01")
 
 def loop():
     blink()
@@ -43,6 +43,12 @@ try:
     setup()
     while True:
         loop()
+
+except KeyboardInterrupt:
+    print(">>>>>>>>>> CTRL + C Interrupt by user !")
+
+except Exception as exception:
+    print(">>>>>>>>>> Exception : ", exception)
 
 finally:
     red.close()

@@ -9,7 +9,7 @@ display = TM1637_01(clk=17, dio=27, brightnes=1, is_show_point=False, pin_mode="
 
 def setup():
 
-    print("Exercice 04 - Les afficheurs 7 segments led 01")
+    print("Exercice 04 - Les afficheurs 7 segments - Partie 01")
 
     display.showNumber([4,3,2,1])
     sleep(0.5)
