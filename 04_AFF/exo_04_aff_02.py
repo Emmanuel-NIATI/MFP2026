@@ -23,6 +23,12 @@ def setup():
     display.hide_double_point()
     sleep(0.5)
 
+    display.show_number([ 4, 3, 2, 1])
+    sleep(0.5)
+
+    display.set_brightnes(1)
+    sleep(0.5)
+
     display.show_digit([ 'A', 'B', 'C', 'd'])
     sleep(0.5)
 
@@ -57,6 +63,3 @@ finally:
     print("...")
 
 # END
-
-
-

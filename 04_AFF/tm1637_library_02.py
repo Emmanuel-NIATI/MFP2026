@@ -16,15 +16,16 @@ from time import sleep
     |       |           |       |           |       |           |       |
      ---D---    O        ---D---    O        ---D---    O        ---D---    O
 
-     data[i] = 0b0GFEDCBA
-     
+    data[i] = 0b0GFEDCBA
+
 """
 
 class TM1637_02:
 
-    COMMAND_DATA = 0x40         # data command
-    COMMAND_ADDRESS = 0xC0      # address command
-    COMMAND_CTRL = 0x80         # display control command
+    COMMAND_DATA = 0x40         # command data
+    COMMAND_ADDRESS = 0xC0      # command address
+    COMMAND_DISPLAY_CTRL = 0x80 # command display control
+
     TM1637_DSP_ON = 0x08        # display on
     TM1637_DSP_OFF = 0x00       # display off
 
@@ -216,9 +217,11 @@ class TM1637_02:
     def show_data(self, data):
 
         self.current_data = tuple(data)
+        
         self.start()
         self.write_byte(self.COMMAND_DATA)
         self.stop()
+
         self.start()
         self.write_byte(self.COMMAND_ADDRESS)
 
@@ -226,15 +229,16 @@ class TM1637_02:
             self.write_byte(data[i])
         
         self.stop()
+
         self.start()
-        self.write_byte(self.COMMAND_CTRL | self.display_status | self.brightnes)
+        self.write_byte(self.COMMAND_DISPLAY_CTRL | self.TM1637_DSP_ON | self.brightnes)
         self.stop()
 
 
     def show_double_point(self):
 
         double_point_data = 0b10000000
-        self.is_show_point = True
+        self.is_show_double_point = True
         self.current_data = (   self.current_data[0],
                                 self.current_data[1] | double_point_data,
                                 self.current_data[2],
@@ -247,7 +251,7 @@ class TM1637_02:
     def hide_double_point(self):
         
         double_point_data = 0b01111111
-        self.is_show_point = False
+        self.is_show_double_point = False
         self.current_data = (   self.current_data[0],
                                 self.current_data[1] & double_point_data,
                                 self.current_data[2],
@@ -256,7 +260,7 @@ class TM1637_02:
                                 self.current_data[5])
         self.refresh()
 
-    
+
     def show_digit(self, data):
 
         data_0 = ' '
@@ -286,6 +290,7 @@ class TM1637_02:
                             self.DIGIT_TO_HEX[data_5] )
 
         self.show_data(encoded_data)
+
 
     def clear(self):
 
@@ -353,7 +358,3 @@ class TM1637_02:
                             data_5 )
 
         self.show_data(encoded_data)
-
-
-
-
