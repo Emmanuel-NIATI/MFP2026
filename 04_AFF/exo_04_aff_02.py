@@ -23,10 +23,37 @@ def setup():
     display.hide_double_point()
     sleep(0.5)
 
-    display.show_number([ 4, 3, 2, 1])
+    display.show_number([ 0, 0, 0, 0])
     sleep(0.5)
 
     display.set_brightnes(1)
+    sleep(0.5)
+
+    display.show_binary([ 0b10000110, 0b11011011,  0b11001111,  0b11100110, 0b10000000, 0b10000000])
+    sleep(0.5)
+
+    display.show_binary([ 0b00000110, 0b01011011,  0b01001111,  0b01100110, 0b00000000, 0b01110000])
+    sleep(0.5)
+
+    display.show_binary([ 0b00000110, 0b01011011,  0b01001111,  0b01100110, 0b00000000, 0b00110000])
+    sleep(0.5)
+    
+    display.show_binary([ 0b00000110, 0b01011011,  0b01001111,  0b01100110, 0b00000000, 0b01010000])
+    sleep(0.5)
+    
+    display.show_binary([ 0b00000110, 0b01011011,  0b01001111,  0b01100110, 0b00000000, 0b00010000])
+    sleep(0.5)
+    
+    display.show_binary([ 0b00000110, 0b01011011,  0b01001111,  0b01100110, 0b00000000, 0b01100000])
+    sleep(0.5)
+    
+    display.show_binary([ 0b00000110, 0b01011011,  0b01001111,  0b01100110, 0b00000000, 0b00100000])
+    sleep(0.5)
+    
+    display.show_binary([ 0b00000110, 0b01011011,  0b01001111,  0b01100110, 0b00000000, 0b01000000])
+    sleep(0.5)
+    
+    display.show_binary([ 0b00000110, 0b01011011,  0b01001111,  0b01100110, 0b00000000, 0b00000000])    
     sleep(0.5)
 
     display.show_digit([ 'A', 'B', 'C', 'd'])
@@ -42,9 +69,6 @@ def setup():
     sleep(0.5)
 
     display.show_number([ 9, 8, TM1637_02.NUMBER_NULL, TM1637_02.NUMBER_NULL])
-    sleep(0.5)
-
-    display.show_binary([ 0b00000110, 0b01011011,  0b01001111,  0b01100110, 0b00000000, 0b00000000,])
     sleep(0.5)
 
     display.clear()
